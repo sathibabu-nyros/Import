@@ -1,0 +1,85 @@
+   <h3> Log in to explore the world of data </h3>
+      
+      </div>
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-12">
+			
+    <div id="login-overlay" class="modal-dialog">
+      <div class="modal-content home-login"> 
+      <div class="error" ng-show="error_show">
+      	 <p class="error-msg" > <span class="fa fa-times-circle" style="font-size:18px !important;vertical-align:top;margin-right: 10px;"></span> <b>Huh!</b>   This email is not registered to any account. Are you trying to <a href="#/signup" style="text-decoration:none">register</a> for a new account?</p> 
+      </div>
+
+      <div class="validation-error" ng-show="validation_show" style="minimum-height:20px">
+      	 <p class="error-msg"> <span class="fa fa-times-circle" style="font-size:18px !important;vertical-align:top;margin-right: 10px;"></span> <b>Oops!</b>   That email and password don’t go together</p> 
+
+      	
+
+         </div>
+
+               
+          <div class="modal-body">
+              <div class="row">
+              	    <div class="col-xs-6 social" style="padding:45px">
+                     
+				      <a class="btn btn-block btn-social btn-facebook" ng-class="{ 'deactive': social_show }">
+				        <i class="fa fa-facebook"></i> Facebook Login
+				      </a>
+				          <a class="btn btn-block btn-social btn-google-plus" ng-class="{ 'deactive': social_show }">
+					        <i class="fa fa-google-plus"></i> Google Login
+					      </a>
+				        <a class="btn btn-block btn-social btn-github" ng-class="{ 'deactive': social_show }">
+				        <i class="fa fa-github"></i> GitHub Login
+				      </a>
+				            <a class="btn btn-block btn-social btn-linkedin" ng-class="{ 'deactive': social_show }">
+					        <i class="fa fa-linkedin"></i> LinkedIn Login
+					      </a>
+					      <p>We won't post anything without asking</p>
+                  </div>
+
+                  <div class="col-xs-6 login" style="padding:45px">
+                     
+                          <form id="loginForm" method="POST"  validate name="LoginForm"  ng-submit="login()">
+                              <div class="form-group">
+                                 
+                                  <input type="text" class="form-control" id="email" name="email" ng-model="user.email" value="" required title="Please enter you email" placeholder="Email" ng-blur="NewUser()" ng-class="{ 'danger': error_show }">
+                                  <span class="help-block"></span>
+                              </div>
+                              <div class="form-group">
+                                
+                                  <input type="password" class="form-control" id="password" name="password" ng-model="user.password" value="" required title="Please enter your password" placeholder="Password" ng-class="{ 'danger': validation_show }">
+                                  <a class="help-block forgot" href="#/resetpassword">Forgot?</a>
+                              </div>
+                                  <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox" name="remember" id="remember"> Remember Me
+                                  </label>
+                                 
+                              </div>
+                            
+                              <div class="submit-button">
+                                   <button type="submit" class="btn btn-success btn-block" style="margin-top:80px">Log in</button>
+                              </div>
+                            
+                              
+                          </form>
+                     
+                  </div>
+                
+              </div>
+          </div>
+       </div>
+    </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+		</div>
+       <div class="row footer" style="text-align:center">
+        <div class="col-md-12">
+        <p>New to import.io? <a href="#/signup">Sign up here</a></p>
+        </div>
+      </div>

@@ -1,0 +1,52 @@
+
+
+(function() {
+  var angular, root, thisApp;
+
+  root = typeof global !== "undefined" && global !== null ? global : window;
+
+  angular = root.angular;
+
+var thisApp = angular.module('ImportClient', ['ngRoute', 'ngResource','Devise','ngCookies']);
+
+
+thisApp.config([
+  '$routeProvider', '$locationProvider','AuthProvider', function($routeProvider, $locationProvider,AuthProvider) {
+    $routeProvider.when('/home',{
+      templateUrl: "<%= asset_path('home/index.html') %>",
+      controller: 'WelcomeHomeCtrl'
+    });
+    $routeProvider.when('/',{
+      templateUrl: "<%= asset_path('welcome/index.html') %>",
+      controller: 'WelcomeCtrl'
+    });
+    $routeProvider.when('/signup',{
+      templateUrl: "<%= asset_path('welcome/signup.html') %>",
+      controller: 'WelcomeCtrl'
+    });
+     $routeProvider.when('/resetpassword',{
+      templateUrl: "<%= asset_path('welcome/resetpassword.html') %>",
+      controller: 'WelcomeCtrl'
+    }).otherwise({
+      redirectTo: '/'
+    });
+  }
+]);
+
+  root.thisApp = thisApp;
+  
+}).call(this);
+
+
+//   thisApp = angular.module("ImportClient", ['ngCookies','Devise']).config([
+//     '$routeProvider', '$locationProvider','AuthProvider', function($routeProvider, $locationProvider, AuthProvider) {
+//       $locationProvider.html5Mode(true);
+//       return $routeProvider.when("/", {
+//         controller: "WelcomeCtrl",
+//         templateUrl: "<%= asset_path('welcome/index.html') %>"
+//       }).otherwise({
+//         redirectTo: "/"
+//       });
+//     }
+//   ]);
+
