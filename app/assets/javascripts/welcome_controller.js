@@ -47,14 +47,9 @@ thisApp.controller("WelcomeHomeCtrl", function(Auth,$scope,$http,$location) {
 
 
 
-  thisApp.controller("WelcomeCtrl", function(Auth,$scope,$http,$location,$auth,$routeParams) {
+  thisApp.controller("WelcomeCtrl", function(Auth,$scope,$http,$location,$auth) {
 
-      var config = {
-            headers: {
-                'X-HTTP-Method-Override': 'POST'
-            }
-      };
-      
+     
        $scope.authenticate = function(provider) {        
         $auth.authenticate(provider)
           .then(function() {
@@ -151,7 +146,7 @@ thisApp.controller("WelcomeHomeCtrl", function(Auth,$scope,$http,$location) {
      
     
     var credentials = {  
-            token: $routeParams.token,         
+           
             password:  $scope.user.password,
             password_confirmation:  $scope.user.password_confirmation
         };
