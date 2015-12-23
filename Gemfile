@@ -19,7 +19,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jwt'
 gem 'twitter_oauth'
 gem 'httpclient'
-
+gem 'active_model_serializers'
 gem 'bootbox-rails'
 gem 'angularjs-rails'
 gem 'responders', '~> 2.0'
