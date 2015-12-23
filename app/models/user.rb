@@ -20,7 +20,7 @@ def self.form_oauth oauth,data
       u.password =  SecureRandom.hex
     end
 
-    if user.present? && user.display_name.empty?
+    if user.present? && !user.display_name.present?
     user.update(
       display_name: oauth.get_names.join(' '),
       email: data[:email],
