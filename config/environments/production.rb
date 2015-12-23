@@ -76,4 +76,36 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { host: 'https://murmuring-earth-3573.herokuapp.com' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'example.com',
+    user_name:            'sathibabu.nyros@gmail.com',
+    password:             'f93swEsw',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+
+
+
+  ENV['GOOGLE_KEY'] = "197590823023-dnfnrn6a9mvj0m8i2a77a03kokfv28eh.apps.googleusercontent.com";
+  ENV['GOOGLE_SECRET'] = "GB4QGd7qW_vYC4VTDW_jWrar";
+
+
+  ENV['FACEBOOK_KEY'] = "154002081631469";
+  ENV['FACEBOOK_SECRET'] = "f26983218463aad8803d7706dcabdc20";
+
+
+
+  ENV['GITHUB_KEY'] = "c9555f872062fe0ea0c9";
+  ENV['GITHUB_SECRET'] = "e7ce1d969932786e0b204422864bf9202b222d9a";
+
+
+
+  ENV['LINKEDIN_KEY'] = "75edu1ryoloj13";
+  ENV['LINKEDIN_SECRET'] = "MuuFoYwzbxmOzPxe";
+
 end
