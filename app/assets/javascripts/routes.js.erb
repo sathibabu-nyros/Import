@@ -7,11 +7,43 @@
 
   angular = root.angular;
 
-var thisApp = angular.module('ImportClient', ['ngRoute', 'ngResource','Devise','ngCookies']);
+var thisApp = angular.module('ImportClient', ['ngRoute', 'ngResource','Devise','ngCookies','satellizer']);
+
 
 
 thisApp.config([
-  '$routeProvider', '$locationProvider','AuthProvider', function($routeProvider, $locationProvider,AuthProvider) {
+  '$routeProvider', '$locationProvider','AuthProvider','$authProvider', function($routeProvider, $locationProvider,AuthProvider,$authProvider) {
+    
+   
+    
+
+    $authProvider.facebook({
+      clientId: '154002081631469'
+    });
+
+    $authProvider.google({
+      clientId: '197590823023-dnfnrn6a9mvj0m8i2a77a03kokfv28eh.apps.googleusercontent.com'
+    });
+
+    $authProvider.github({
+      clientId: 'c9555f872062fe0ea0c9'
+    });
+
+    $authProvider.linkedin({
+      clientId: '75edu1ryoloj13'
+    });
+
+
+    $authProvider.oauth2({
+      name: 'foursquare',
+      url: '/auth/foursquare',
+      clientId: 'MTCEJ3NGW2PNNB31WOSBFDSAD4MTHYVAZ1UKIULXZ2CVFC2K',
+      redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
+      authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate'
+    });
+
+
+
     $routeProvider.when('/home',{
       templateUrl: "<%= asset_path('home/index.html') %>",
       controller: 'WelcomeHomeCtrl'
@@ -22,6 +54,10 @@ thisApp.config([
     });
     $routeProvider.when('/signup',{
       templateUrl: "<%= asset_path('welcome/signup.html') %>",
+      controller: 'WelcomeCtrl'
+    });
+    $routeProvider.when('/reset/:token',{
+      templateUrl: "<%= asset_path('welcome/reset.html') %>",
       controller: 'WelcomeCtrl'
     });
      $routeProvider.when('/resetpassword',{
@@ -38,15 +74,5 @@ thisApp.config([
 }).call(this);
 
 
-//   thisApp = angular.module("ImportClient", ['ngCookies','Devise']).config([
-//     '$routeProvider', '$locationProvider','AuthProvider', function($routeProvider, $locationProvider, AuthProvider) {
-//       $locationProvider.html5Mode(true);
-//       return $routeProvider.when("/", {
-//         controller: "WelcomeCtrl",
-//         templateUrl: "<%= asset_path('welcome/index.html') %>"
-//       }).otherwise({
-//         redirectTo: "/"
-//       });
-//     }
-//   ]);
+
 

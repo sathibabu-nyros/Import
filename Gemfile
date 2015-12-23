@@ -14,10 +14,20 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # gem 'angularjs-rails', '~> 1.4'
+
+gem 'jwt'
+gem 'twitter_oauth'
+gem 'httpclient'
+
 gem 'bootbox-rails'
 gem 'angularjs-rails'
 gem 'responders', '~> 2.0'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2' 
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem "omniauth-github"
 source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end

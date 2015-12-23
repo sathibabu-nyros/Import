@@ -237,6 +237,16 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
+
+  config.omniauth :facebook, ENV["1061493797218477"], ENV["9aa1bb8f38b4f931476571a547a60ed8"]
+
+   config.omniauth :facebook, "1061493797218477", "9aa1bb8f38b4f931476571a547a60ed8"  
+#   config.omniauth :linked_in, "75edu1ryoloj13", "MuuFoYwzbxmOzPxe"
+#   config.omniauth :github, '0a1feb80bb97751d2c37', 'f32f7849d917d8f9773fcf0cf611b5a2a4ec9034
+# '
+#   config.omniauth :google_oauth2, "APP_ID", "APP_SECRET", { access_type: "offline", approval_prompt: "" }
+
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

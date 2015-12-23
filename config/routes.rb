@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
-  devise_for :users
+  devise_for :users,:controllers => { :passwords => "passwords"}
+
+  
   get 'welcome/index'
 
   root 'welcome#index'
 
   post 'checkuser' => "users#checkuser"
+
+put '/' => 'welcome#index'
+
+  post 'auth/:provider',      to: 'welcome#authenticate'
+  post 'auth/twitter',        to: 'welcome#twitter'
+  post 'auth/twitter_step_2', to: 'welcome#twitter_step_2'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

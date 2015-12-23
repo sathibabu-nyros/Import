@@ -12,10 +12,13 @@ thisApp.controller("WelcomeHomeCtrl", function(Auth,$scope,$http,$location) {
 
       Auth.currentUser().then(function(user) {           
             $scope.email = user.email
-         
+            $scope.display_name = user.display_name         
         }, function(error) {          
              $location.path('/');
-        });
+      });
+
+
+      
 
 
           $scope.logout = function (){
@@ -44,14 +47,34 @@ thisApp.controller("WelcomeHomeCtrl", function(Auth,$scope,$http,$location) {
 
 
 
-  thisApp.controller("WelcomeCtrl", function(Auth,$scope,$http,$location) {
+  thisApp.controller("WelcomeCtrl", function(Auth,$scope,$http,$location,$auth,$routeParams) {
 
       var config = {
             headers: {
                 'X-HTTP-Method-Override': 'POST'
             }
       };
-   
+      
+       $scope.authenticate = function(provider) {        
+        $auth.authenticate(provider)
+          .then(function() {
+           
+             $location.path('/home');
+          })
+          .catch(function(error) {
+            if (error.error) {
+              // Popup error - invalid redirect_uri, pressed cancel button, etc.
+              console.log(error.error);
+            } else if (error.data) {
+              // HTTP response error from server
+              console.log(error.data.message, error.status);
+            } else {
+              console.log(error);
+            }
+          });
+      };
+
+
 
   	 $scope.user={};
      $scope.error_show = false;
@@ -85,18 +108,72 @@ thisApp.controller("WelcomeHomeCtrl", function(Auth,$scope,$http,$location) {
             
         });
 
-        // $scope.$on('devise:login', function(event, currentUser) {
-        //     // after a login, a hard refresh, a new tab
-        //     $scope.user={};
-        //     $location.path('/store');
-        // });
-
-        // $scope.$on('devise:new-session', function(event, currentUser) {
-        //     // user logged in by Auth.login({...})
-        // });
+       
 
 
     };
+
+
+      $scope.PasswordLength = function () {
+
+        if(!$scope.user.password || $scope.user.password.length < 6 ){
+            $scope.length_error_show = true
+            return false
+        } else {
+          $scope.length_error_show = false
+          return true
+        }
+           
+      };
+
+
+      $scope.PasswordMatch = function (){
+
+        var result = $scope.PasswordLength();
+
+        if(!result || $scope.user.password !=  $scope.user.password_confirmation){
+            $scope.mismatch_error_show = true
+            return false
+        } else {
+          $scope.mismatch_error_show = false
+           return true
+        }
+           
+      };
+
+
+
+
+  $scope.change_password = function() {
+
+    
+     var result = $scope.PasswordMatch();
+     
+    
+    var credentials = {  
+            token: $routeParams.token,         
+            password:  $scope.user.password,
+            password_confirmation:  $scope.user.password_confirmation
+        };
+         if(result){
+           $http({
+            method: 'PUT',
+            url: '/users/password',
+            data: credentials,        
+            }).then(function successCallback(response) {
+              $location.path('/');
+            }, function errorCallback(response) {
+              $location.path('/reset/'+token);
+            });
+         }
+       
+
+
+   
+  };
+
+
+
 
 
     $scope.register = function (){
@@ -104,6 +181,8 @@ thisApp.controller("WelcomeHomeCtrl", function(Auth,$scope,$http,$location) {
         $scope.validation_show = false;
         $scope.emailvalidation = false;
         $scope.passwordvalidation = false;
+        $scope.mismatch_error_show = false;
+         $scope.length_error_show = false;
 
        var credentials = {
             email:  $scope.user.email,
@@ -117,7 +196,8 @@ thisApp.controller("WelcomeHomeCtrl", function(Auth,$scope,$http,$location) {
 
         Auth.register(credentials, config).then(function(registeredUser) {
           
-            Auth.login(credentials, config);
+            // Auth.login(credentials, config);
+             $location.path('/');
            
         }, function(error) {
             // Registration failed...
@@ -173,7 +253,6 @@ thisApp.controller("WelcomeHomeCtrl", function(Auth,$scope,$http,$location) {
            
       };
 
-
        $scope.ResetPassword = function (){
 
       if($scope.user.email){
@@ -189,6 +268,9 @@ thisApp.controller("WelcomeHomeCtrl", function(Auth,$scope,$http,$location) {
            
       };
 
+
+
+ 
 
       // $scope.SubmitForm = function() {
       //  if(error_show){

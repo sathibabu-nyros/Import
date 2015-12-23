@@ -25,17 +25,17 @@
               <div class="row">
               	    <div class="col-xs-6 social" style="padding:45px">
                      
-				      <a class="btn btn-block btn-social btn-facebook" ng-class="{ 'deactive': social_show }">
+				      <a class="btn btn-block btn-social btn-facebook" ng-class="{ 'deactive': social_show }" href="#" ng-click="authenticate('facebook')" >
 				        <i class="fa fa-facebook"></i> Facebook Login
 				      </a>
-				          <a class="btn btn-block btn-social btn-google-plus" ng-class="{ 'deactive': social_show }">
-					        <i class="fa fa-google-plus"></i> Google Login
+				          <a class="btn btn-block btn-social btn-google-plus" ng-class="{ 'deactive': social_show }" ng-click="authenticate('google')" >
+					        <i class="fa fa-google-plus"></i> Google Logn
 					      </a>
-				        <a class="btn btn-block btn-social btn-github" ng-class="{ 'deactive': social_show }">
+				        <a class="btn btn-block btn-social btn-github" ng-class="{ 'deactive': social_show }" ng-click="authenticate('github')">
 				        <i class="fa fa-github"></i> GitHub Login
 				      </a>
-				            <a class="btn btn-block btn-social btn-linkedin" ng-class="{ 'deactive': social_show }">
-					        <i class="fa fa-linkedin"></i> LinkedIn Login
+				            <a class="btn btn-block btn-social btn-linkedin" ng-class="{ 'deactive': social_show }" ng-click="authenticate('linkedin')">
+					        <i class="fa fa-linkedin" ></i> LinkedIn Login
 					      </a>
 					      <p>We won't post anything without asking</p>
                   </div>
@@ -83,3 +83,7 @@
         <p>New to import.io? <a href="#/signup">Sign up here</a></p>
         </div>
       </div>
+
+
+
+
